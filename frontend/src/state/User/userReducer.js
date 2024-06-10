@@ -8,7 +8,7 @@ let initialState = {
         street : "somewhere on earth",
         mobile :898989898,
         hobby: ["Watching paint dry"],
-        cart: []
+        //cart: []
     }
 }
 
@@ -41,16 +41,16 @@ let userReducer = (state=initialState, action)=>{
                 user: updatedUser,
             };
 
-        case actionTypes.ADD_PRODUCT_TO_CART:
-            const updatedCart = { ...state.user };    
-            // Get product from payload
-            const newProduct = action.payload;
-            // Add product to updatedProducts array
-            updatedCart.cart = [...updatedCart.cart, newProduct];      // Return a new state object with the updated product
-            return {
-                ...state,
-                user: updatedCart,
-            };
+        // case actionTypes.ADD_PRODUCT_TO_CART:
+        //     const updatedCart = { ...state.user };    
+        //     // Get product from payload
+        //     const newProduct = action.payload;
+        //     // Add product to updatedProducts array
+        //     updatedCart.cart = [...updatedCart.cart, newProduct];      // Return a new state object with the updated product
+        //     return {
+        //         ...state,
+        //         user: updatedCart,
+        //     };
 
 /*             const newProduct = action.payload;
             // Add product to updatedProducts array

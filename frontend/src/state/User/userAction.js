@@ -16,19 +16,19 @@ export const AddHobbyToStore = (hobby)=>{
     }
 }
 
-export const AddProductToCart = (product)=>{
-    console.log("AddProductToCart called")
-    return {
-        type : actionTypes.ADD_PRODUCT_TO_CART, //actiontype to be matched in user reducer
-        payload : product //payload which will update the
-    }
-}
+// export const AddProductToCart = (product)=>{
+//     console.log("AddProductToCart called")
+//     return {
+//         type : actionTypes.ADD_PRODUCT_TO_CART, //actiontype to be matched in user reducer
+//         payload : product //payload which will update the
+//     }
+// }
 
-export const SaveProductToCart = (newProduct)=>{
-    return (dispatch)=>{
-        dispatch(AddProductToCart(newProduct))
-    }
-}
+// export const SaveProductToCart = (newProduct)=>{
+//     return (dispatch)=>{
+//         dispatch(AddProductToCart(newProduct))
+//     }
+// }
 
 //server call
 //to save user to mongo db and do sign-in or sign up

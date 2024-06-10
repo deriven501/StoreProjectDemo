@@ -103,7 +103,9 @@ let Product = (props) => {
 
             <hr/>
 
-            {<DisplayProducts Products={allProducts}/>}
+            <div className="row mb-4">
+                {<DisplayProducts Products={allProducts}/>}
+            </div>
             
         </>
     )
