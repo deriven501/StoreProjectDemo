@@ -1,11 +1,11 @@
 import * as actionTypes from "../actionTypes";
 
-export const SetUserCart = (name)=>{
-    return {
-        type : actionTypes.SET_USER_IN_CART, //actiontype to be matched in user reducer
-        payload : name //payload which will update the
-    }
-}
+// export const SetUserCart = (name)=>{
+//     return {
+//         type : actionTypes.SET_USER_IN_CART, //actiontype to be matched in user reducer
+//         payload : name //payload which will update the
+//     }
+// }
 
 export const AddProductToCart = (item) => {
     return {

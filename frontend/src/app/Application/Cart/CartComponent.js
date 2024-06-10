@@ -16,15 +16,16 @@ let Cart = (props) => {
     //     dispatchToDB(SaveUserToCart(User.userName))
     // }, [userCart]);
 
-    useEffect(() => { 
-        dispatchToCart(SetUserCart(User.userName))
-    }, []);
+    // useEffect(() => { 
+    //     dispatchToCart(SetUserCart(User.userName))
+    // }, []);
 
   
     let increaseQuantity = (item, quantity) => {
         console.log("add to this item")
         console.log(item)
         console.log(quantity)
+        quantity = item.qty + quantity
         dispatchToCart(updateCartItem(item.product._id, quantity))
     }
 
@@ -83,7 +84,7 @@ let Cart = (props) => {
 
     return(
         <>
-        <h1 className="border ms-5 w-25 text-center bg-primary text-light">{userCart.userName}'s Cart</h1>
+        <h1 className="border ms-5 w-25 text-center bg-primary text-light">{User.userName}'s Cart</h1>
         <hr/>
         <div>
             {ProductShow()}
