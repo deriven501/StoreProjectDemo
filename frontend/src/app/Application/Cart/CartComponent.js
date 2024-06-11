@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {SetUserCart, updateCartItem } from "../../../state/Cart/cartAction";
-
+import {updateCartItem } from "../../../state/Cart/cartAction";
+import productSummary from "./productSummary";
 let Cart = (props) => {
 
     let dispatchToCart = useDispatch()
@@ -41,9 +41,9 @@ let Cart = (props) => {
                 itemInCart.map((item, index)=>{
                     return(
                         <div className="bg-primary-subtle" key={index}>
-                            <h3>Name: {item.product.productName}</h3>
-                            <h3>Price: {item.product.productPrice}</h3>
-                            <div>
+                            <h3 className="ms-3">Name: {item.product.productName}</h3>
+                            <h3 className="ms-3">Price: ${item.product.productPrice}</h3>
+                            <div className="ms-3">
                                 
                                 <h3>
                                         Quantity: 
@@ -72,7 +72,7 @@ let Cart = (props) => {
     }
 
     let showCheckOut = () => {
-        if(userCart.length > 0) {
+        if(itemInCart.length > 0) {
             return(
                 <button type="button" class="btn btn-primary " onClick={() => toCheckout()}>To Checkout</button>
             )
@@ -89,6 +89,8 @@ let Cart = (props) => {
         <div>
             {ProductShow()}
         </div>
+        <hr/>
+        {productSummary(itemInCart)}
         <hr/>
         {showCheckOut()}
 

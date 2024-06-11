@@ -25,7 +25,7 @@ let DisplayProducts = (props) => {
                 return(                
                         <div className="col-md-3 mb-4 bg-primary-subtle border-dark ms-5" key={index}>
                             <h3>{product.productName}</h3>
-                            <h3>{product.productPrice}</h3>
+                            <h3>${product.productPrice}</h3>
                             <h5>{product.productDesc}</h5>
 
                             <button type="button" class="btn btn-primary " onClick={() => SaveToCart(product)}>Add to Cart</button>
