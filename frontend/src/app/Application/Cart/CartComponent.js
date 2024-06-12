@@ -1,9 +1,10 @@
 import React from "react";
+import { useNavigate, Link } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {updateCartItem } from "../../../state/Cart/cartAction";
 import productSummary from "./productSummary";
 let Cart = (props) => {
-
+    const navigate = useNavigate();
     let dispatchToCart = useDispatch()
     let User = useSelector((store)=>store.userReducer.user)
     //dispatchToCart(SetUserCart(User.userName))
@@ -29,8 +30,12 @@ let Cart = (props) => {
         dispatchToCart(updateCartItem(item.product._id, quantity))
     }
 
-    let decreaseQuantity = (product, quantity) => {
-
+    let decreaseQuantity = (item, quantity) => {
+        console.log("remove this item quantity")
+        console.log(item)
+        console.log(quantity)
+        quantity = item.qty - quantity
+        dispatchToCart(updateCartItem(item.product._id, quantity))
     }
 
 
@@ -74,7 +79,12 @@ let Cart = (props) => {
     let showCheckOut = () => {
         if(itemInCart.length > 0) {
             return(
-                <button type="button" class="btn btn-primary " onClick={() => toCheckout()}>To Checkout</button>
+                <>
+                    <hr/>
+                    <Link to='/checkout'><button type="button" color="primary">To Checkout</button></Link>
+                </>
+                
+                //<button type="button" class="btn btn-primary " onClick={() => toCheckout()}>To Checkout</button>
             )
             
         }        
@@ -91,7 +101,7 @@ let Cart = (props) => {
         </div>
         <hr/>
         {productSummary(itemInCart)}
-        <hr/>
+        
         {showCheckOut()}
 
         
