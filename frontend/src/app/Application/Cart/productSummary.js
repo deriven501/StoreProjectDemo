@@ -25,10 +25,10 @@ const productSummary = (cartItems) => {
     
     
         return (
-            <div>
-                <h2 className="ms-3">Total Summary: </h2>
-                <h3 className="ms-3">Amount in cart: {sumTotalQty(cartItems)} </h3>
-                <h3 className="ms-3">Total Price: ${calculateTotalCost(cartItems)} </h3>
+            <div className="w-50 ms-5 ">
+                <h2 className="bg-primary text-light ps-2">Total Summary: </h2>
+                <h3 className="ps-2 bg-primary-subtle">Amount in cart: {sumTotalQty(cartItems)} </h3>
+                <h3 className="ps-2 bg-primary-subtle">Total Price: ${calculateTotalCost(cartItems)} </h3>
             </div>
         )
     }

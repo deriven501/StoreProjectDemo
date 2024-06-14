@@ -16,7 +16,7 @@ let Header = (props)=>{
 
     return(
         <>
-            <h2>Hi {usrName} , Welcome to Shopping Cart sponsored by Tech Team SIT</h2>
+            <h2>Hi {usrName} , Welcome to the Krusty Krab sponsored by Tech Team SIT</h2>
             
             <div>
                 <NavLink to="/home"  className="button" activeclassname="true"> Home </NavLink>

@@ -1,10 +1,10 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {updateCartItem } from "../../../state/Cart/cartAction";
 import productSummary from "./productSummary";
 let Cart = (props) => {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     let dispatchToCart = useDispatch()
     let User = useSelector((store)=>store.userReducer.user)
     //dispatchToCart(SetUserCart(User.userName))
@@ -45,17 +45,17 @@ let Cart = (props) => {
             return(
                 itemInCart.map((item, index)=>{
                     return(
-                        <div className="bg-primary-subtle" key={index}>
-                            <h3 className="ms-3">Name: {item.product.productName}</h3>
-                            <h3 className="ms-3">Price: ${item.product.productPrice}</h3>
+                        <div className="bg-primary-subtle w-50 ms-5" key={index}>
+                            <h5 className="ms-3">Name: {item.product.productName}</h5>
+                            <h5 className="ms-3">Price: ${item.product.productPrice}</h5>
                             <div className="ms-3">
                                 
-                                <h3>
+                                <h5>
                                         Quantity: 
                                         <button type="button" class="btn btn-primary " onClick={() => decreaseQuantity(item, 1)}>-</button> 
                                         {item.qty} 
                                         <button type="button" class="btn btn-primary " onClick={() => increaseQuantity(item, 1)}>+</button>
-                                </h3>
+                                </h5>
                                 
                             </div>
                            
@@ -69,12 +69,6 @@ let Cart = (props) => {
         }
     }
 
-
-
-
-    let toCheckout = () => {
-
-    }
 
     let showCheckOut = () => {
         if(itemInCart.length > 0) {

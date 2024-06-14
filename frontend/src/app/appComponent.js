@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./test.css";
+//import "./test.css";
 import "./app.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 // import TestComponent from "./CommonComponent/test";
@@ -14,6 +14,7 @@ import HobbyComponent from "./Application/Hobby/HobbyComponent";
 import ProductComponent from "./Application/Product/ProductComponent";
 import CartComponent from "./Application/Cart/CartComponent";
 import CheckoutComponent from "./Application/Checkout/CheckoutComponent";
+import PaymentComplete from "./Application/Checkout/payDone";
 
 export default class ApplicationComponent extends Component {
 
@@ -68,6 +69,7 @@ export default class ApplicationComponent extends Component {
                     <Route path="hobby" element={<HobbyComponent />}/>
                     <Route path="cart" element={<CartComponent />}/>
                     <Route path="checkout" element={<CheckoutComponent />}/>
+                    <Route path="checkout/paymentconfirm" element={<PaymentComplete />}/>
                     <Route path="about" element={<About />}/>
                     <Route path="about/:id" element={<About />}/>
                     <Route path="*" element={<NotFound />}/>                    
