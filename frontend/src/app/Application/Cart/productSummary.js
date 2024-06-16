@@ -1,6 +1,6 @@
 import React from "react";
 
-const productSummary = (cartItems) => {
+const productSummary = (cartItems, discount) => {
     //let {totalAmount, totalCost} = props.data;
     
     if(cartItems.length > 0) {
@@ -15,11 +15,12 @@ const productSummary = (cartItems) => {
     
         let calculateTotalCost = (cartItems) => {
             let totalCost = 0
+            
             for(let item of cartItems) {
                 totalCost = totalCost + item.qty*item.product.productPrice
             }
-    
-            return totalCost
+            let discAmount = (discount*totalCost)/100
+            return totalCost - discAmount
         }
     
     
@@ -28,6 +29,7 @@ const productSummary = (cartItems) => {
             <div className="w-50 ms-5 ">
                 <h2 className="bg-primary text-light ps-2">Total Summary: </h2>
                 <h3 className="ps-2 bg-primary-subtle">Amount in cart: {sumTotalQty(cartItems)} </h3>
+                <h3 className="ps-2 bg-primary-subtle">Discount: {discount}% </h3>
                 <h3 className="ps-2 bg-primary-subtle">Total Price: ${calculateTotalCost(cartItems)} </h3>
             </div>
         )

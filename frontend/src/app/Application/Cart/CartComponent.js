@@ -94,7 +94,7 @@ let Cart = (props) => {
             {ProductShow()}
         </div>
         <hr/>
-        {productSummary(itemInCart)}
+        {productSummary(itemInCart, 0)}
         
         {showCheckOut()}
 

@@ -4,14 +4,26 @@ import productSummary from "../Cart/productSummary";
 import { Link } from "react-router-dom";
 
 let Checkout = () => {
-    let User = useSelector((store)=>store.userReducer.user)
-    //dispatchToCart(SetUserCart(User.userName))
+    const User = useSelector((store)=>store.userReducer.user)
+    const storeCoupon = useSelector((store)=>store.couponReducer.coupon)
+    let couponNum = storeCoupon.numbers
+    let couponDisc = storeCoupon.discount
     const userCart = useSelector((store)=>store.cartReducer.cart)
-    let [inputCoupon, setCoupon] = useState("")
+    const [inputCoupon, setCoupon] = useState(0)
+    const [discount, setDiscount] = useState(0)
+    const [couponError, setError] = useState(false)
     const itemInCart = userCart.items
 
     let couponCheck = () => {
-
+        //console.log(storeCoupon)
+        if(couponNum == 0) {
+            setError(true)
+        } else if(couponNum != inputCoupon) {
+            setError(true)
+        } else {
+            setError(false)
+            setDiscount(couponDisc)
+        }
     }
 
 
@@ -52,7 +64,7 @@ let Checkout = () => {
                     </div>
 
                     <div className="col">
-                        {productSummary(itemInCart)}                        
+                        {productSummary(itemInCart, discount)}                        
                     </div>
                 </div>
                 <hr/>
@@ -79,8 +91,9 @@ let Checkout = () => {
                             </select>
                             <hr/>
                             <label htmlFor="discount">Discount code:</label>
+                            {couponError && <h5 className="text-danger">Incorrect Coupon code</h5>}
                             <input className="ms-1 mb-2" type="text" id="discount" name="discount" onChange={(evt)=>setCoupon(evt.target.value)}></input>
-                            <button type="button" className="btn btn-primary mb-4" onClick={() => couponCheck()}>Add to Cart</button>
+                            <button type="button" className="btn btn-primary mb-4" onClick={() => couponCheck()}>Enter Coupon</button>
                         </div>
                     </div>
                 </div>
