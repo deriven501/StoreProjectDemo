@@ -18,14 +18,18 @@ let Header = (props)=>{
         <>
             <h2>Hi {usrName} , Welcome to the Krusty Krab sponsored by Tech Team SIT</h2>
             
-            <div>
+            <div className="position-relative">
                 <NavLink to="/home"  className="button" activeclassname="true"> Home </NavLink>
                 <NavLink to="/user"  className="button" activeclassname="true"> Login </NavLink>
-                <NavLink to="/coupon"  className="button" activeclassname="true"> Coupon </NavLink>
-                <NavLink to="/product"  className="button" activeclassname="true"> Product </NavLink>
-                <NavLink to="/cart"  className="button" activeclassname="true"> Cart </NavLink>
-                <NavLink to="/hobby"  className="button" activeclassname="true"> Hobby </NavLink>
                 <NavLink to="/about"  className="button" activeclassname="true"> About </NavLink>
+                {(usrName!="Dummy") && <NavLink to="/coupon"  className="button" activeclassname="true"> Coupon </NavLink>}
+                {(usrName!="Dummy") && <NavLink to="/product"  className="button" activeclassname="true"> Product </NavLink>}
+                {(usrName!="Dummy") && <NavLink to="/cart"  className="button" activeclassname="true"> Cart </NavLink>}
+                {(usrName!="Dummy") && <NavLink to="/hobby"  className="button" activeclassname="true"> Hobby </NavLink>}
+
+                {(usrName!="Dummy") && <button type="button" class="btn btn-primary position-absolute top-0 end-0">
+                    Notifications <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>
+                </button>}
                 {/* <NavLink to="/about/2500"  className="button" activeclassname="true"> About with Param</NavLink> */}
             </div>
             <hr/>

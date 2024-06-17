@@ -43,8 +43,8 @@ let UserHook = (props)=>{
 
     //below is useRef help
     //the reference implemenation
-    let sessionName = useRef(null)
-    let todaysTopic = useRef(null)
+    //let sessionName = useRef(null)
+    //let todaysTopic = useRef(null)
 
     //sessionName.current.value = User.userName //we can't access the element as it is not rendered yet
 
@@ -53,7 +53,7 @@ let UserHook = (props)=>{
     //when first rendering is done and UI can be accessed - componentDidMount
     //useeffect is the hook that we use to make it work as shouldComponentUpdate, componentDidMount, componentWillUnmount
     //using useEffect to implement componentDidMount and then add the value to ref element
-    useEffect(()=>{
+    {/*useEffect(()=>{
         console.log("Re render happend")
 
         sessionName.current.value = User.userName
@@ -69,7 +69,7 @@ let UserHook = (props)=>{
         alert(sessionName.current.value)
         //can be dispatched data back to the store or db
         evt.preventDefault()
-    }
+    }*/}
 
     return(
         <>
@@ -102,13 +102,13 @@ let UserHook = (props)=>{
                             onChange={(evt)=>setPhone(evt.target.value)} />
                     </div>
                     <input type="button" className={"btn btn-primary col-md-2 saveUser"} 
-                                    value={"SignIn-Up"} 
+                                    value={"Login"} 
                                     onClick={loginUser}/>
                 </div>
             </section>
 
         {/* uncontrolled way by using ref keyword */}
-            <form className={"form col-md-10 userHook"} onSubmit={readFormData}>                
+           { /*<form className={"form col-md-10 userHook"} onSubmit={readFormData}>                
                 <label>
                     <b>User Name :</b>
                     <input type="text" className={"form-control col-md-12"} ref={sessionName}
@@ -122,7 +122,7 @@ let UserHook = (props)=>{
                     </label>
                     <br/>
                 <input type="submit" className={"btn btn-primary"} value="Signin" />
-            </form> 
+            </form> */}
 
         </>
     )

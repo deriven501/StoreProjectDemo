@@ -10,7 +10,7 @@ let Product = (props) => {
     let [productDesc, setDesc] = useState("")
     let [productRating, setRating] = useState("")
     let dispatchToDB = useDispatch()
-    //const user = useSelector((store)=>store.userReducer.user)
+    const user = useSelector((store)=>store.userReducer.user)
     const allProducts = useSelector((store)=>store.productReducer.products)
     console.log(allProducts)
     //let [allProducts, SetAllProducts] = useState("")
@@ -60,7 +60,7 @@ let Product = (props) => {
 
     return(
         <>
-            <form className={"form col-md-10 ps-2"} onSubmit={readProductData}> 
+        {(user.userName=="admin") && <form className={"form col-md-10 ps-2"} onSubmit={readProductData}> 
                 <div className="col-md-12">
                     <label>
                         <b>Product Name :</b>
@@ -99,10 +99,9 @@ let Product = (props) => {
                     </label>
                 </div>
                 <input type="submit" className={"btn btn-primary"} value="Submit" />
-            </form> 
-
-            <hr/>
-
+                <hr/>
+            </form> }
+            
             <div className="row mb-4">
                 {<DisplayProducts Products={allProducts}/>}
             </div>
