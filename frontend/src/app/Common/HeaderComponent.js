@@ -8,6 +8,8 @@ let Header = (props)=>{
     //allows us to read data from store/reducer as we do with mapStateToProps
     //becomes subscriber of user state from user reducer
     const user = useSelector((store)=>store.userReducer.user)
+    //const notifyStore = useSelector((store)=>store.notificationReducer.notify)
+    const notifyMessages = useSelector((store)=>store.notificationReducer.notify.messages)
     
     console.log(user)
     
@@ -26,10 +28,21 @@ let Header = (props)=>{
                 {(usrName!="Dummy") && <NavLink to="/product"  className="button" activeclassname="true"> Product </NavLink>}
                 {(usrName!="Dummy") && <NavLink to="/cart"  className="button" activeclassname="true"> Cart </NavLink>}
                 {(usrName!="Dummy") && <NavLink to="/hobby"  className="button" activeclassname="true"> Hobby </NavLink>}
-
-                {(usrName!="Dummy") && <button type="button" class="btn btn-primary position-absolute top-0 end-0">
+                {/*<button type="button" class="btn btn-primary position-absolute top-0 end-0">
                     Notifications <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>
-                </button>}
+                </button>*/}
+                <NavLink to="/notifications" className="button btn-primary position-absolute top-0 end-0" activeclassname="true">   
+                        Notifications
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {notifyMessages.length}
+                            <span className="visually-hidden">unread messages</span>
+                        </span>
+                    
+                 </NavLink>
+
+                {/*(usrName!="Dummy") && <button type="button" class="btn btn-primary position-absolute top-0 end-0">
+                    Notifications <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>
+                </button>*/}
                 {/* <NavLink to="/about/2500"  className="button" activeclassname="true"> About with Param</NavLink> */}
             </div>
             <hr/>

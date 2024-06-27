@@ -16,6 +16,7 @@ import CartComponent from "./Application/Cart/CartComponent";
 import CheckoutComponent from "./Application/Checkout/CheckoutComponent";
 import PaymentComplete from "./Application/Checkout/payDone";
 import CouponComponent from "./Application/Coupon/CouponComponent";
+import NotificationComponent from "./Application/Notification/NotificationComponent";
 
 export default class ApplicationComponent extends Component {
 
@@ -67,6 +68,7 @@ export default class ApplicationComponent extends Component {
                     {/*<Route path="user" element={<UserComponent />}/>*/}
                     <Route path="user" element={<UserHook />}/>
                     <Route path="product" element={<ProductComponent />}/>
+                    <Route path="notifications" element={<NotificationComponent />}/>
                     <Route path="hobby" element={<HobbyComponent />}/>
                     <Route path="cart" element={<CartComponent />}/>
                     <Route path="checkout" element={<CheckoutComponent />}/>

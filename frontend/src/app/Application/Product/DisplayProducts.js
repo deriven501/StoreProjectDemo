@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { AddProductToCart } from "../../../state/Cart/cartAction";
+import { AddNewNotification } from "../../../state/Notification/notificationAction";
 
 let DisplayProducts = (props) => {
     //let [productName, setProductName] = useState("")
     const products = props.Products
-    let dispatchToCart = useDispatch()
+    const userCart = useSelector((store)=>store.cartReducer.cart)
+    const amountInCart = userCart.items.length
+    let dispatchToStore = useDispatch()
     
     let SaveToCart = (product) => {
         //setProductName(product)
@@ -13,8 +16,20 @@ let DisplayProducts = (props) => {
             product,
             qty: 1
         }
+        
+        let newQ = amountInCart + 1
+        console.log(newQ)
+        let entry = {
+            type:"cartItem", 
+            message: "There are " + newQ + " items in the cart", 
+            link: "/cart"
+        }
+
         console.log("Saving product to cart")
-        dispatchToCart(AddProductToCart(productToCart))
+        dispatchToStore(AddProductToCart(productToCart))
+        dispatchToStore(AddNewNotification(entry))
+
+        
         //console.log(product)
     }
 
