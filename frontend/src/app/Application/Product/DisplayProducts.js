@@ -4,20 +4,24 @@ import { AddProductToCart } from "../../../state/Cart/cartAction";
 import { AddNewNotification } from "../../../state/Notification/notificationAction";
 
 let DisplayProducts = (props) => {
-    //let [productName, setProductName] = useState("")
     const products = props.Products
     const userCart = useSelector((store)=>store.cartReducer.cart)
-    const amountInCart = userCart.items.length
+    const amountInCart = userCart.items
     let dispatchToStore = useDispatch()
     
     let SaveToCart = (product) => {
-        //setProductName(product)
         let productToCart = {
             product,
             qty: 1
         }
-        
-        let newQ = amountInCart + 1
+        dispatchToStore(AddProductToCart(productToCart))
+
+        let newQ = 1
+
+        for(let i =0; i < amountInCart.length;i++) {
+            newQ = newQ + amountInCart[i].qty
+        }
+
         console.log(newQ)
         let entry = {
             type:"cartItem", 
@@ -26,11 +30,8 @@ let DisplayProducts = (props) => {
         }
 
         console.log("Saving product to cart")
-        dispatchToStore(AddProductToCart(productToCart))
-        dispatchToStore(AddNewNotification(entry))
-
         
-        //console.log(product)
+        dispatchToStore(AddNewNotification(entry))        
     }
 
     if(products.length > 0) {

@@ -2,9 +2,12 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { cancelOrder } from "../../../state/Order/orderAction";
 import { AddNewNotification } from "../../../state/Notification/notificationAction";
+import { AddProductToCart } from "../../../state/Cart/cartAction";
 
 let Recentorder = () => {
     const userOrder = useSelector((store)=>store.orderReducer.orderHistory)
+    const userCart = useSelector((store)=>store.cartReducer.cart)
+    const amountInCart = userCart.items
     let dispatchToStore = useDispatch()
     let userOrders = userOrder.orders
 
@@ -25,6 +28,26 @@ let Recentorder = () => {
                 )
             })
         )
+    }
+
+    let reAddOrder = (order) => {
+        let newQ = 0
+        for(let i =0; i < order.length;i++) {
+            dispatchToStore(AddProductToCart(order[i]))
+            newQ = newQ + order[i].qty
+        }
+
+        for(let i =0; i < amountInCart.length;i++) {
+            newQ = newQ + amountInCart[i].qty
+        }
+
+        let entry = {
+            type:"cartItem", 
+            message: "There are " + newQ + " items in the cart", 
+            link: "/cart"
+        }
+
+        dispatchToStore(AddNewNotification(entry))    
     }
 
     let removeOrder = (timeOrder) => {
@@ -51,6 +74,9 @@ let Recentorder = () => {
                                 <h3 className="text-center">Total Cost - with discount {order.disc}%: ${order.totalCost}</h3>
                                 <div className="d-flex justify-content-center">
                                     <button type="button" color="primary" onClick={() => removeOrder(order.timeOrder)}>Cancel Order</button>
+                                </div>
+                                <div className="d-flex justify-content-center">
+                                    <button type="button" color="primary" onClick={() => reAddOrder(order.order)}>Buy these again</button>
                                 </div>
                                 
                             </div>

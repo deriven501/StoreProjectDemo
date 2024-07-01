@@ -17,8 +17,23 @@ let cartReducer = (state=initialState, action)=> {
         //     //return {...state, cart: {...state.cart.userName, NewName}}
 
         case actionTypes.ADD_PRODUCT_TO_CART:
-            let newState = state.cart.items.filter(item => item.product._id != action.payload.item.product._id)
-            return {...state, cart: {...state.cart, items: [...newState, action.payload.item]}}
+            const existingItem = state.cart.items.find((item) => item.product._id == action.payload.item.product._id)
+
+            if(existingItem) {
+                const updatedItems = state.cart.items.map((item) => {
+                    if(item.product._id == action.payload.item.product._id) {
+                        return {...item, qty: item.qty + action.payload.item.qty}
+                    } else {
+                        return item
+                    }
+                })
+                return{...state, cart: {...state.cart, items: updatedItems}}
+            } else {
+                let newState = state.cart.items.filter(item => item.product._id != action.payload.item.product._id)
+                return { ...state, cart: { ...state.cart, items: [...newState, action.payload.item] } }
+            }
+
+            
 
         case actionTypes.UPDATE_CART:
             const updatedProductInCart = state.cart.items.map((item)=> {
