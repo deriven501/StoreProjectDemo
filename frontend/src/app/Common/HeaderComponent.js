@@ -28,17 +28,15 @@ let Header = (props)=>{
                 {(usrName!="Dummy") && <NavLink to="/product"  className="button" activeclassname="true"> Product </NavLink>}
                 {(usrName!="Dummy") && <NavLink to="/cart"  className="button" activeclassname="true"> Cart </NavLink>}
                 {(usrName!="Dummy") && <NavLink to="/hobby"  className="button" activeclassname="true"> Hobby </NavLink>}
-                {/*<button type="button" class="btn btn-primary position-absolute top-0 end-0">
-                    Notifications <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>
-                </button>*/}
-                <NavLink to="/notifications" className="button btn-primary position-absolute top-0 end-0" activeclassname="true">   
+                {(usrName!="Dummy") && <NavLink to="/recentorder"  className="button" activeclassname="true"> Recent Orders </NavLink>}
+                {(usrName!="Dummy") && <NavLink to="/notifications" className="button btn-primary position-absolute top-0 end-0" activeclassname="true">   
                         Notifications
                         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {notifyMessages.length}
                             <span className="visually-hidden">unread messages</span>
                         </span>
                     
-                 </NavLink>
+                 </NavLink>}
 
                 {/*(usrName!="Dummy") && <button type="button" class="btn btn-primary position-absolute top-0 end-0">
                     Notifications <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span class="visually-hidden">unread messages</span></span>

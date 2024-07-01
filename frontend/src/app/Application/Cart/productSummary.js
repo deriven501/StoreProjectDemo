@@ -1,6 +1,8 @@
 import React from "react";
-
+import { useDispatch} from "react-redux";
+import { AddTotalCost } from "../../../state/TotalCost/costAction";
 const productSummary = (cartItems, discount) => {
+    let dispatchToStore = useDispatch()
     //let {totalAmount, totalCost} = props.data;
     
     if(cartItems.length > 0) {
@@ -20,6 +22,7 @@ const productSummary = (cartItems, discount) => {
                 totalCost = totalCost + item.qty*item.product.productPrice
             }
             let discAmount = (discount*totalCost)/100
+            dispatchToStore(AddTotalCost(totalCost - discAmount))
             return totalCost - discAmount
         }
     

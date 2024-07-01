@@ -1,11 +1,15 @@
 import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import productSummary from "../Cart/productSummary";
 import { Link } from "react-router-dom";
-
+import { AddOrder } from "../../../state/Order/orderAction";
+import { ClearCart } from "../../../state/Cart/cartAction";
+import { removeMessage } from "../../../state/Notification/notificationAction";
 let Checkout = () => {
     const User = useSelector((store)=>store.userReducer.user)
     const storeCoupon = useSelector((store)=>store.couponReducer.coupon)
+    const totalCost = useSelector((store)=>store.costReducer.totalCost)
+    let dispatchToStore = useDispatch()
     let couponNum = storeCoupon.numbers
     let couponDisc = storeCoupon.discount
     const userCart = useSelector((store)=>store.cartReducer.cart)
@@ -13,6 +17,8 @@ let Checkout = () => {
     const [discount, setDiscount] = useState(0)
     const [couponError, setError] = useState(false)
     const itemInCart = userCart.items
+    const orderTime = new Date()
+    //const timeTest = new Date()
 
     let couponCheck = () => {
         //console.log(storeCoupon)
@@ -26,9 +32,28 @@ let Checkout = () => {
         }
     }
 
+    let saveOrder = (order, time, cost, discount) => {
+        let orderSubmit = {
+            dateOrder: time.toDateString(),
+            timeOrder: time.toLocaleTimeString(),
+            order,
+            totalCost: cost,
+            disc: discount
+        }
+
+        //time2 = time2.toDateString()
+        //let timeTest2 = new Date(time2)
+        //console.log(timeTest2)
+        //console.log(new Date(dateOrder))
+        dispatchToStore(removeMessage("cartItem"))
+        dispatchToStore(ClearCart())
+        dispatchToStore(AddOrder(orderSubmit))
+    }
+
 
     return (
         <>
+            {console.log(totalCost)}
             <div className="container text-center">
                 <div className="row" >
                     <h1 className="border w-100 bg-primary text-light mb-2">Checkout</h1>
@@ -98,7 +123,7 @@ let Checkout = () => {
                     </div>
                 </div>
                 <hr/>          
-                <Link to='/checkout/paymentconfirm'><button type="button" color="primary">Confirm Purchase</button></Link>
+                <Link to='/checkout/paymentconfirm'><button type="button" color="primary" onClick={() => saveOrder(itemInCart, orderTime, totalCost, discount)}>Confirm Purchase</button></Link>
             </div>
 
         </>

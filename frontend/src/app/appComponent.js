@@ -17,6 +17,7 @@ import CheckoutComponent from "./Application/Checkout/CheckoutComponent";
 import PaymentComplete from "./Application/Checkout/payDone";
 import CouponComponent from "./Application/Coupon/CouponComponent";
 import NotificationComponent from "./Application/Notification/NotificationComponent";
+import RecentorderComponent from "./Application/Recentorder/RecentorderComponent";
 
 export default class ApplicationComponent extends Component {
 
@@ -73,6 +74,7 @@ export default class ApplicationComponent extends Component {
                     <Route path="cart" element={<CartComponent />}/>
                     <Route path="checkout" element={<CheckoutComponent />}/>
                     <Route path="checkout/paymentconfirm" element={<PaymentComplete />}/>
+                    <Route path="recentorder" element={<RecentorderComponent />}/>
                     <Route path="coupon" element={<CouponComponent />}/>
                     <Route path="about" element={<About />}/>
                     <Route path="about/:id" element={<About />}/>

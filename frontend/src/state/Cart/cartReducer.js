@@ -28,14 +28,10 @@ let cartReducer = (state=initialState, action)=> {
                 return item
             })
             return{...state, cart: {...state.cart, items: updatedProductInCart}}
+        
+        case actionTypes.EMPTY_CART:
+            return{...state, cart: {...state.cart, items: []}}
 
-            // return state.cart.items.map((item)=>{
-            //     if (item.product._id == action.payload.id) { //update the qty of item we want to update with selected id
-            //         return {...item, qty:action.payload.qty} //...item means {name, desc, rating, qty, price}
-            //     }
-            //     return item;//for all other items in cart do not update anything
-            //})
-            
         default:
             return state //if no action type matched return default state
     }

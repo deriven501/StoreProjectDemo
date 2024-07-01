@@ -24,7 +24,7 @@ let Notification = () => {
                 notifyMessages.map((message, index)=>{
                     return(                
                         
-                            <div className="row mb-4 bg-primary border-dark ms-5 button w-50" onClick={() => notificationClick(message)} key={index}>
+                            <div className="row mb-4 mt-4 bg-info border-dark button d-flex justify-content-center" onClick={() => notificationClick(message)} key={index}>
                                 <h3>{message.message}</h3>
                                 <hr />
                             </div>
@@ -39,11 +39,15 @@ let Notification = () => {
 
     return(
         <>  
-            <div>
-
-            </div>
-            <h1 className="border w-100 bg-primary text-light mb-2 text-center ">Notifications</h1>
+             <h1 className="position-relative border w-75 bg-primary text-light mb-2 text-center start-50 translate-middle-x">Notifications</h1>
+            <div className="container text-center">
+           
             {displayMessages()}
+            </div>
+
+            
+
+            
         </>
     )
 }

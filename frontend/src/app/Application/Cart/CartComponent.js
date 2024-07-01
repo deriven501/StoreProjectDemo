@@ -69,7 +69,6 @@ let Cart = (props) => {
         }
     }
 
-
     let showCheckOut = () => {
         if(itemInCart.length > 0) {
             return(

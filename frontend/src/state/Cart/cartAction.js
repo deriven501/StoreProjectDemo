@@ -6,6 +6,12 @@ import * as actionTypes from "../actionTypes";
 //         payload : name //payload which will update the
 //     }
 // }
+export const ClearCart = () => {
+    return {
+        type: actionTypes.EMPTY_CART
+    }
+    
+}
 
 export const AddProductToCart = (item) => {
     return {

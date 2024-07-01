@@ -13,6 +13,8 @@ import productReducer from "./Product/productReducer";
 import cartReducer from "./Cart/cartReducer";
 import couponReducer from "./Coupon/couponReducer";
 import notificationReducer from "./Notification/notificationReducer";
+import orderReducer from "./Order/orderReducer";
+import costReducer from "./TotalCost/CostReducer";
 //import productReducer from  "./Product/productReducer"; //another reducer for product component
 
 //we can add multiple reducers and combine them togather to have one root reducer and add it to store
@@ -21,7 +23,9 @@ let rootReducer = combineReducers({
     productReducer,//productReducer
     cartReducer,
     couponReducer,
-    notificationReducer
+    notificationReducer,
+    orderReducer,
+    costReducer
 })
 
 //create or configure and export the store from this code
