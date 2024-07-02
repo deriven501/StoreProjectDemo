@@ -1,22 +1,26 @@
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 //import "./test.css";
 import "./app.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 // import TestComponent from "./CommonComponent/test";
-import Home from "./Common/HomeComponent";
-import Footer from "./Common/FooterComponent";
-import Header from "./Common/HeaderComponent";
+let Home = lazy(()=> import("./Common/HomeComponent"));
+let Footer = lazy(()=> import("./Common/FooterComponent"));
+let Header = lazy(()=> import("./Common/HeaderComponent"));
+//import Footer from "./Common/FooterComponent";
+//import Header from "./Common/HeaderComponent";
 import About from "./Common/AboutComponent";
 import NotFound from "./Common/NotFoundComponent";
-import UserComponent from "./Application/User/UserContainer";
+//import UserComponent from "./Application/User/UserContainer";
 import UserHook from "./Application/User/UserHookComponent";
 import HobbyComponent from "./Application/Hobby/HobbyComponent";
-import ProductComponent from "./Application/Product/ProductComponent";
+let ProductComponent = lazy(()=> import("./Application/Product/ProductComponent"));
+//import ProductComponent from "./Application/Product/ProductComponent";
 import CartComponent from "./Application/Cart/CartComponent";
 import CheckoutComponent from "./Application/Checkout/CheckoutComponent";
 import PaymentComplete from "./Application/Checkout/payDone";
 import CouponComponent from "./Application/Coupon/CouponComponent";
-import NotificationComponent from "./Application/Notification/NotificationComponent";
+let NotificationComponent = lazy(()=> import("./Application/Notification/NotificationComponent"));
+//import NotificationComponent from "./Application/Notification/NotificationComponent";
 import RecentorderComponent from "./Application/Recentorder/RecentorderComponent";
 
 export default class ApplicationComponent extends Component {
@@ -59,28 +63,30 @@ export default class ApplicationComponent extends Component {
         return(
             <Router>
                 <div className="topdiv">
-                {/* <b>userName : {this.state.name}</b> */}
-                <Header userName={this.state.name}/>
-                <Routes>
-                    <Route path="/" element={<Home  parentName1={this.state.name} 
-                            updateNameInParent={this.updateName} />}/>
-                    <Route path="home" element={<Home  parentName1={this.state.name}
-                            updateNameInParent={this.updateName} />}/>
-                    {/*<Route path="user" element={<UserComponent />}/>*/}
-                    <Route path="user" element={<UserHook />}/>
-                    <Route path="product" element={<ProductComponent />}/>
-                    <Route path="notifications" element={<NotificationComponent />}/>
-                    <Route path="hobby" element={<HobbyComponent />}/>
-                    <Route path="cart" element={<CartComponent />}/>
-                    <Route path="checkout" element={<CheckoutComponent />}/>
-                    <Route path="checkout/paymentconfirm" element={<PaymentComplete />}/>
-                    <Route path="recentorder" element={<RecentorderComponent />}/>
-                    <Route path="coupon" element={<CouponComponent />}/>
-                    <Route path="about" element={<About />}/>
-                    <Route path="about/:id" element={<About />}/>
-                    <Route path="*" element={<NotFound />}/>                    
-                </Routes>
-                <Footer/> 
+                    <Suspense fallback={<div>Loading...</div>}>
+                        {/* <b>userName : {this.state.name}</b> */}
+                        <Header userName={this.state.name} />
+                        <Routes>
+                            <Route path="/" element={<Home parentName1={this.state.name}
+                                updateNameInParent={this.updateName} />} />
+                            <Route path="home" element={<Home parentName1={this.state.name}
+                                updateNameInParent={this.updateName} />} />
+                            {/*<Route path="user" element={<UserComponent />}/>*/}
+                            <Route path="user" element={<UserHook />} />
+                            <Route path="product" element={<ProductComponent />} />
+                            <Route path="notifications" element={<NotificationComponent />} />
+                            <Route path="hobby" element={<HobbyComponent />} />
+                            <Route path="cart" element={<CartComponent />} />
+                            <Route path="checkout" element={<CheckoutComponent />} />
+                            <Route path="checkout/paymentconfirm" element={<PaymentComplete />} />
+                            <Route path="recentorder" element={<RecentorderComponent />} />
+                            <Route path="coupon" element={<CouponComponent />} />
+                            <Route path="about" element={<About />} />
+                            <Route path="about/:id" element={<About />} />
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                        <Footer />
+                    </Suspense>
                 </div>
             </Router>
         )
